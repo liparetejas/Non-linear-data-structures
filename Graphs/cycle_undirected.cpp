@@ -1,4 +1,4 @@
-/* Cycle detection in an undirected graph using BFS algorithm */
+/* Cycle detection in an undirected graph using BFS and DFS algorithms */
 #include<bits/stdc++.h>
 #define M 1000000007
 #define ll long long int
@@ -6,7 +6,7 @@
 using namespace std;
 
 // Time: O(n) Space: O(n)
-bool detectCycle(ll n, vector<vector<ll>> adjList) {
+bool detectCycleBFS(ll n, vector<vector<ll>> adjList) {
 	vector<bool> visited(n+1, false);
 	for(ll i = 1; i<=n; i++) {
 		if(!visited[i]) {
@@ -33,6 +33,33 @@ bool detectCycle(ll n, vector<vector<ll>> adjList) {
     return false;
 }
 
+// Time: O(n) Space: O(n)
+bool dfs(ll curr, ll prev, vector<bool>& visited, vector<vector<ll>> adjList) {
+	visited[curr] = true;
+	for(ll node : adjList[curr]) {
+		if(!visited[node]) {
+			if(dfs(node, curr, visited, adjList)) {
+                return true;
+            }
+		}
+        else if(prev != node) {
+            return true;
+        }
+	}
+    return false;
+}
+
+bool detectCycleDFS(ll n, vector<vector<ll>> adjList) {
+	vector<bool> visited(n+1, false);
+	for(ll i=1; i<=n; i++) {
+		if(!visited[i]) {
+			if(dfs(i, -1, visited, adjList)) {
+                return true;
+            }
+		}
+	}
+	return false;
+}
 
 int main()
 {
@@ -49,11 +76,17 @@ int main()
 	    adjList[u].push_back(v);
 	    adjList[v].push_back(u); 
 	}
-	if(detectCycle(n, adjList)) {
-        cout << "Cycle detected" << endl;
+	if(detectCycleBFS(n, adjList)) {
+        cout << "Cycle detected using BFS." << endl;
     }
     else {
-        cout << "Cycle absent" << endl;
+        cout << "Cycle absent." << endl;
+    }
+    if(detectCycleDFS(n, adjList)) {
+        cout << "Cycle detected using DFS." << endl;
+    }
+    else {
+        cout << "Cycle absent." << endl;
     }
 	return 0;	
 }
@@ -73,7 +106,8 @@ Input:
 9 10
 
 Output:
-Cycle detected
+Cycle detected using BFS.
+Cycle detected using DFS.
 
 Input:
 11 10
@@ -89,5 +123,6 @@ Input:
 9 10
 
 Output:
-Cycle absent
+Cycle absent.
+Cycle absent.
 */
