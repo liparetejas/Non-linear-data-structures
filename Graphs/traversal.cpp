@@ -110,4 +110,6 @@ Input:
 Output:
 No. of components in the graph: 2
 BFS: 1 2 3 7 5 4 6
+No. of components in the graph: 2
+DFS: 1 2 3 5 7 4 6
 */
