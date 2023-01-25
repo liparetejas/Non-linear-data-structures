@@ -2,6 +2,8 @@
     Topological sort is ordering of vertices such that if there is an
     edge between u and v then u appears before v in the ordering.
     It only occurs in directed acyclic graphs.
+    DFS: Use stack
+    BFS: Use queue (Kahn's algorithm)
 */
 #include<bits/stdc++.h>
 #define M 1000000007
@@ -30,10 +32,39 @@ void topological_sort(vector<vector<ll>>& adjList, ll n) {
         }
     }
     //cout << topoStack.size() << endl;
+    cout << "Topological order using DFS: ";
     while(!topoStack.empty()) {
         cout << topoStack.top() << " ";
         topoStack.pop();
     }
+}
+
+void kahns_algo(vector<vector<ll>>& adjList, ll n) {
+    cout << "Topological order using Kahn's algorithm: ";
+    vector<int> indegree(n, 0);
+    for(int i = 0; i < n; i++) {
+        for(int adj : adjList[i]) {
+            indegree[adj]++;
+        }
+    }
+    queue<int> q;
+    for(int i=0; i<n; i++) {
+        if(indegree[i] == 0) {
+            q.push(i);
+        }
+    }
+    while(!q.empty()) {
+        int node = q.front();
+        q.pop();
+        cout << node << " ";
+        for(int adj : adjList[node]) {
+            indegree[adj]--;
+            if(indegree[adj] == 0) {
+                q.push(adj);
+            }
+        }
+    }
+    cout << endl;
 }
 
 int main()
@@ -50,7 +81,8 @@ int main()
 	    cin >> u >> v;
 	    adjList[u].push_back(v); 
 	}
-    topological_sort(adjList, n);
+    //topological_sort(adjList, n);
+    kahns_algo(adjList, n);
 	return 0;	
 }
 
@@ -65,5 +97,6 @@ Input:
 5 2
 
 Output:
-5 2 3 4 1 0
+Topological order using DFS: 5 2 3 4 1 0
+Topological order using Kahn's algorithm: 5 2 3 4 0 1
 */
