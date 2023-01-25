@@ -1,4 +1,4 @@
-/* Cycle detection in a directed graph using DFS algorithms */
+/* Cycle detection in a directed graph using DFS & BFS algorithms */
 #include<bits/stdc++.h>
 #define M 1000000007
 #define ll long long int
@@ -36,6 +36,34 @@ bool detectCycleDFS(ll n, vector<vector<ll>>& adjList) {
 	return false;
 }
 
+bool detectCycleBFS(ll n, vector<vector<ll>>& adjList) {
+	vector<int> indegree(n+1, 0);
+	vector<int> topoOrder;
+    for(int i = 1; i <= n; i++) {
+        for(int adj : adjList[i]) {
+            indegree[adj]++;
+        }
+    }
+    queue<int> q;
+    for(int i=1; i<=n; i++) {
+        if(indegree[i] == 0) {
+            q.push(i);
+        }
+    }
+    while(!q.empty()) {
+        int node = q.front();
+        q.pop();
+        topoOrder.push_back(node);
+        for(int adj : adjList[node]) {
+            indegree[adj]--;
+            if(indegree[adj] == 0) {
+                q.push(adj);
+            }
+        }
+    }
+	return topoOrder.size() < n;
+}
+
 int main()
 {
 	/* ios_base::sync_with_stdio(false);
@@ -52,6 +80,12 @@ int main()
 	}
     if(detectCycleDFS(n, adjList)) {
         cout << "Cycle detected using DFS." << endl;
+    }
+    else {
+        cout << "Cycle absent." << endl;
+    }
+	if(detectCycleBFS(n, adjList)) {
+        cout << "Cycle detected using BFS." << endl;
     }
     else {
         cout << "Cycle absent." << endl;
@@ -78,5 +112,6 @@ Input:
 10 6
 
 Output:
-
+Cycle detected using DFS.
+Cycle detected using BFS.
 */
