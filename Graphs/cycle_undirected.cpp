@@ -5,7 +5,7 @@
 #define endl '\n'
 using namespace std;
 
-// Time: O(n) Space: O(n)
+// Time: O(n+e) Space: O(n)
 bool detectCycleBFS(ll n, vector<vector<ll>> adjList) {
 	vector<bool> visited(n+1, false);
 	for(ll i = 1; i<=n; i++) {
@@ -33,7 +33,7 @@ bool detectCycleBFS(ll n, vector<vector<ll>> adjList) {
     return false;
 }
 
-// Time: O(n) Space: O(n)
+// Time: O(n+e) Space: O(n)
 bool dfs(ll curr, ll prev, vector<bool>& visited, vector<vector<ll>> adjList) {
 	visited[curr] = true;
 	for(ll node : adjList[curr]) {
