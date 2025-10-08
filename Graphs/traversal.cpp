@@ -5,7 +5,7 @@
 #define endl '\n'
 using namespace std;
 
-// Time: O(n) Space: O(n)
+// Time: O(n+e) Space: O(n)
 void bfs(ll n, vector<vector<ll>> adjList) {
 	vector<bool> visited(n+1, false);
 	vector<ll> bfs_vect;
@@ -39,7 +39,7 @@ void bfs(ll n, vector<vector<ll>> adjList) {
 }
 
 
-// Time: O(n) Space: O(n)
+// Time: O(n+e) Space: O(n)
 void dfs(ll n, vector<bool>& visited, vector<vector<ll>> adjList, vector<ll>& dfs_vect) {
 	dfs_vect.push_back(n);
 	visited[n] = true;
