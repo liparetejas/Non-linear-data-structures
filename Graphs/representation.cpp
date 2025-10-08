@@ -1,8 +1,8 @@
 /* Creation of graph in C++ 
    This is representation of undirected graph.
-   For undirected graph, we need to remove the edge from v to u.
-   For weighted graph, we can insert pair in adjacency list where pair.first represents node
-   and pair.second represents weight of the edge.*/
+   For directed graph, we need to remove the edge from v to u.
+   For weighted graph, we can insert pair in adjacency list where pair.first
+   represents node and pair.second represents weight of the edge.*/
 /* n: Number of nodes
    e: Number of edges*/
 
