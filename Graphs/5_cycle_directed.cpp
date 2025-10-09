@@ -5,7 +5,7 @@
 #define endl '\n'
 using namespace std;
 
-// Time: O(n) Space: O(n)
+// Time: O(n+e) Space: O(n)
 bool dfs(ll curr, vector<bool>& visited, vector<bool>& path, vector<vector<ll>>& adjList) {
 	visited[curr] = 1;
 	path[curr] = 1;
@@ -36,6 +36,7 @@ bool detectCycleDFS(ll n, vector<vector<ll>>& adjList) {
 	return false;
 }
 
+// Time: O(n+e) Space: O(n)
 bool detectCycleBFS(ll n, vector<vector<ll>>& adjList) {
 	vector<int> indegree(n+1, 0);
 	vector<int> topoOrder;
