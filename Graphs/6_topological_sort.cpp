@@ -24,19 +24,17 @@ void dfs(ll curr, vector<vector<ll>>& adjList, vector<bool>& visited, stack<ll>&
 void topological_sort(vector<vector<ll>>& adjList, ll n) {
     vector<bool> visited(n, 0);
     stack<ll> topoStack;
-    //cout << "Hello World!" << endl;
     for(ll i=0; i<n; i++) {
         if(!visited[i]) {
-            //cout << " " << i << endl;
             dfs(i, adjList, visited, topoStack);
         }
     }
-    //cout << topoStack.size() << endl;
     cout << "Topological order using DFS: ";
     while(!topoStack.empty()) {
         cout << topoStack.top() << " ";
         topoStack.pop();
     }
+	cout << endl;
 }
 
 void kahns_algo(vector<vector<ll>>& adjList, ll n) {
@@ -81,7 +79,7 @@ int main()
 	    cin >> u >> v;
 	    adjList[u].push_back(v); 
 	}
-    //topological_sort(adjList, n);
+    topological_sort(adjList, n);
     kahns_algo(adjList, n);
 	return 0;	
 }
