@@ -6,14 +6,14 @@ using namespace std;
 
 /*
   FindPar(u):
-    Find ultimate parent of u and return pu.
+    Find ultimate parent of u and return par(u).
     Use path compression to make the process efficient.
 */
 
 /* 
   Union(u, v):
-    1. Find ultimate parent of u & v i.e. pu &pv resp.
-    2. Find rank of pu & pv.
+    1. Find ultimate parent of u & v i.e. par(u) & par(v) resp.
+    2. Find rank of par(u) & par(v).
     3. Connect smaller rank to larger rank.
 */
 
