@@ -29,9 +29,11 @@ void sccDfs(int currNode, vector<int>& visited,
 	}				
 }
 
+// Time: O(V+E) | Space: O(V)
 vector<vector<int>> stronglyConnectedComponents(
 								int n, vector<vector<int>>& adjList) {
 	vector<vector<int>> sccs;
+	// O(V+E)
 	// DFS with G_R
 	vector<vector<int>> reversedAdjList(n);
 	for(int node=0; node<n; node++) {
@@ -39,6 +41,7 @@ vector<vector<int>> stronglyConnectedComponents(
 			reversedAdjList[adjNode].push_back(node);
 		}
 	}
+	// O(V+E)
 	stack<int> finishingTimes;
 	vector<int> visited(n, 0);
 	for(int node=0; node<n; node++) {
@@ -47,6 +50,7 @@ vector<vector<int>> stronglyConnectedComponents(
 									reversedAdjList);
 		}
 	}
+	// O(V+E)
 	// DFS with G in decreasing order of finish time found in step 1
 	memset(&visited[0], 0, sizeof(int) * n);
 	while(!finishingTimes.empty()) {
@@ -81,3 +85,25 @@ int main()
 	}
 	return 0;	
 }
+
+/*
+Input:
+8 10
+0 1
+1 2
+2 0
+2 3
+3 4
+4 7
+4 5
+5 6
+6 4
+6 7
+
+Outut:
+SCC size: 4
+7 
+4 5 6 
+3 
+0 1 2 
+*/
