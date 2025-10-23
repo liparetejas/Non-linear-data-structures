@@ -1,4 +1,4 @@
-/* Prim's and Kruskal's algorithm to find MST */
+/* Prim's algorithm to find MST */
 #include<bits/stdc++.h>
 #define M 1000000007
 #define ll long long int
