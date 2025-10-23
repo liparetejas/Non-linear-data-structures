@@ -1,4 +1,4 @@
-/* Strongly connected components in a DAG */
+/* Strongly connected components in a DAG (Kosaraju's Algorithm') */
 #include<bits/stdc++.h>
 #define M 1000000007
 #define ll long long int
